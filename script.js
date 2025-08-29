@@ -10,12 +10,22 @@ for (const heart of hearts) {
   heart.addEventListener("click", incrementLoveCount);
 }
 
-const callButtons = document.querySelectorAll(".call-btn");
-for (const button of callButtons) {
-  button.addEventListener("click", function () {
-    const card = button.closest(".min-h-[360px]");
-    if (!card) return;
-    const title = card.querySelector("span.text-[16px]").innerText;
-    alert("You clicked: " + );
+let coins = 100;
+const coinContainer = document.getElementById("coin-box");
+const historyBox = document.getElementById("history");
+const callButtons = document.querySelectorAll(".callBtn");
+for (const callBtn of callButtons) {
+  callBtn.addEventListener("click", () => {
+    if (coins >= 20) {
+      coins = coins - 20;
+      coinContainer.textContent = `Coins: ${coins}`;
+      alert(`Calling ${callBtn.textContent}...20 coins deducted!`);
+      if (historyBox.textContent === "No calls yet") {
+        historyBox.textContent = "";
+      }
+      historyBox.innerHTML += `<p>Called: ${callBtn.textContent}</p>`;
+    } else {
+      alert("Not enough coins to make a call!");
+    }
   });
 }
